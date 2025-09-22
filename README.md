@@ -13,6 +13,35 @@ The existing biometric event/telemetry stream https://github.com/ObrienlabsDev/b
 # Use Cases
 
 # Design Issues
+## DI1: IOS Client
+## DI2: Android Client
+## DI3: MQTT Backend
+see https://docs.emqx.com/en/emqx/latest/
+
+# Architecture
+## Diagrams
+```mermaid
+graph TD
+    subgraph iPhone Client
+        A[Sensor Manager  Core Motion] --> B[Data Batching - ProtoBuf] ;
+        B --> C[MQTT Client];
+        B --> D[HTTP/3 Client];
+    end
+
+    subgraph Backend Infrastructure
+        E[MQTT Broker  EMQX, VerneMQ] --> G[Message Bus];
+        F[HTTP/3 Gateway  ] --> G;
+        G --> H[Stream Processors];
+        H --> I[Time-Series Database];
+        H --> J[API & Dashboard];
+    end
+
+    C -- MQTT (High-frequency data) --> E;
+    D -- HTTP/3 (Commands, metadata) --> F;
+
+    style A fill:#cde4ff
+    style I fill:#d5e8d4
+```
 
 # Implementation
 
