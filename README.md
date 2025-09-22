@@ -17,3 +17,4 @@ The existing biometric event/telemetry stream https://github.com/ObrienlabsDev/b
 
 
 # Links
+- Robin Marx's book is currently n/a - online only at https://http3-explained.haxx.se/
